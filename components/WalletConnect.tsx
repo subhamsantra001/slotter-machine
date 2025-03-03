@@ -1,15 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ethers } from "ethers";
 
 const WalletConnect = ({
   onWalletConnected,
+  account,
+  setAccount,
 }: {
   onWalletConnected: () => void;
+  account: string | null;
+  setAccount: Dispatch<SetStateAction<string | null>>;
 }) => {
-  const [account, setAccount] = useState<string | null>(null);
-
   const connectWallet = async () => {
     if (typeof window.ethereum !== "undefined") {
       const provider = new ethers.BrowserProvider(window.ethereum);
